@@ -47,6 +47,7 @@ const labelSumInterest = document.querySelector('.summary__value--interest');
 const labelTimer = document.querySelector('.timer');
 
 const containerApp = document.querySelector('.app');
+const containerApp2 = document.querySelector('.app2');
 const containerMovements = document.querySelector('.movements');
 
 const btnLogin = document.querySelector('.login__btn');
@@ -63,7 +64,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-
+const element = document.querySelector('main');
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 // Functions
@@ -153,22 +154,38 @@ btnSort.addEventListener('click', function(e){
 
 // LOGIN IMPLEMENTATION
 
+
 let currentAccount;
 btnLogin.addEventListener('click', function(e){
   //Prevents form from submitting
   e.preventDefault(); 
+
+  if(window.innerWidth <= 768 ){
+    containerApp2.style.opacity = 100;
+    element.classList.remove('app');
+    
+  }else if(window.innerWidth > 768){
+    containerApp.style.opacity = 100;
+    element.classList.remove('app2');
+  }
   currentAccount = accounts.find(acc => acc.userName === inputLoginUsername.value);
   //usecase of optional chaining can be seen here, so we are basically checking if the current account exists, if it exists then only we will check if the pin matches
   if(currentAccount?.pin === Number(inputLoginPin.value)){
+      
       // Display UI and welcome message
       labelWelcome.textContent = `Welcome back! ${currentAccount.owner.split(' ')[0]}`;
-      containerApp.style.opacity = 100;
+     
+      /*containerApp.style.opacity = 100;*/
+      /*document.querySelector('.app2').style.opacity = 100; //Changed for mobile view*/
+      window.addEventListener('resize', handleResize);
 
       // Clear input fields 
       inputLoginUsername.value = inputLoginPin.value = '';
       inputLoginPin.blur(); //blur method helps to lose focus, so after user logs in, cursor will not be visible
-
+      document.querySelector('.login').style.opacity = 0;
       updateUI(currentAccount);
+
+      
 
   }
 });
@@ -233,5 +250,19 @@ btnLoan.addEventListener('click', function(e){
 })
 
 
+
+
+function handleResize() {
+  
+  if (window.innerWidth <= 768) {
+      element.classList.remove('app');      
+      element.classList.add('app2');
+      containerApp2.style.opacity = 100;
+  } else {
+      element.classList.add('app');
+      containerApp.style.opacity = 100;
+      element.classList.remove('app2');
+  }
+}
 
 

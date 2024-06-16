@@ -1,0 +1,58 @@
+@media screen and  (max-width: 768px){
+
+
+
+
+    body {
+        font-family: "Noto Sans", sans-serif;
+        color: #444;
+        background-color: #f3f3f3;
+        height: 100vh;
+        padding: 20px;
+        background-image: #ffffff;
+      }
+      
+
+      nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem 6rem;
+        gap: 20px;
+      }
+      
+
+      .login {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+      }
+    
+      .app2{
+        opacity: 0;
+        margin-top: -120px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+
+      .balance__value {
+        font-size: 14px;
+        font-weight: 400;
+      }    
+
+      .summary {
+       
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 0.3rem;
+        margin-top: 1rem;
+      }
+      
+}
