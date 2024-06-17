@@ -160,24 +160,24 @@ btnLogin.addEventListener('click', function(e){
   //Prevents form from submitting
   e.preventDefault(); 
 
-  if(window.innerWidth <= 768 ){
-    containerApp2.style.opacity = 100;
-    element.classList.remove('app');
-    
-  }else if(window.innerWidth > 768){
-    containerApp.style.opacity = 100;
-    element.classList.remove('app2');
-  }
+  
   currentAccount = accounts.find(acc => acc.userName === inputLoginUsername.value);
   //usecase of optional chaining can be seen here, so we are basically checking if the current account exists, if it exists then only we will check if the pin matches
   if(currentAccount?.pin === Number(inputLoginPin.value)){
+    if(window.innerWidth <= 768 ){
+      containerApp2.style.opacity = 100;
+      element.classList.remove('app');
       
+    }else if(window.innerWidth > 768){
+      containerApp.style.opacity = 100;
+      element.classList.remove('app2');
+    }
       // Display UI and welcome message
       labelWelcome.textContent = `Welcome back! ${currentAccount.owner.split(' ')[0]}`;
      
       /*containerApp.style.opacity = 100;*/
       /*document.querySelector('.app2').style.opacity = 100; //Changed for mobile view*/
-      window.addEventListener('resize', handleResize);
+      window.addEventListener('resize', handleResize);//to add responsiveness
 
       // Clear input fields 
       inputLoginUsername.value = inputLoginPin.value = '';
