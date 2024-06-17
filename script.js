@@ -187,6 +187,8 @@ btnLogin.addEventListener('click', function(e){
 
       
 
+  }else{
+    alert('Please enter correct credentials');
   }
 });
 
